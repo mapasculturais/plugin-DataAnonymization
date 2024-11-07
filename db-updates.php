@@ -203,7 +203,7 @@ return [
                     $agent->_newModifiedRevision();
                 }
 
-                $app->log->debug("{$key} - Recria as revisões da inscrição {$reg->id} após anonimização");
+                $app->log->debug("{$key} - Recria as revisões da inscrição {$agent->id} após anonimização");
                 $app->em->clear();
             }
         }
