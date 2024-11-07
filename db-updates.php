@@ -19,14 +19,12 @@ function __table_exists($table_name)
     if ($conn->fetchAll("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = '$table_name';")) {
         return true;
     } else {
-        return false;
     }
 }
 
 
 return [
     'Realiza a anonimização dos dados na base de agentes' => function () use ($app, $conn, $plugin) {
-        return false;
         if ($agents = $conn->fetchAll("SELECT * FROM agent")) {
             foreach ($agents as $agent) {
                 $old_data = (object) $agent;
@@ -56,7 +54,6 @@ return [
     },
 
     'Realiza a anonimização dos dados na base de inscrições' => function () use ($app, $conn, $plugin) {
-        return false;
         if ($registrations = $conn->fetchAll("SELECT * FROM registration")) {
 
             foreach ($registrations as $registration) {
@@ -115,12 +112,10 @@ return [
             }
         }
 
-        return false;
     },
 
 
     'Apaga os dados das tabelas relacionadas ao blame' => function () use ($app) {
-        return false;
         $em = $app->em;
         $conn = $em->getConnection();
 
@@ -176,10 +171,8 @@ return [
             $app->log->debug("{$count} - Realiza a anonimização dos dados das tabelas de revisões");
             $count ++;
         } while (count($revisions) === $batch_size);
-        return false;
     },
     'Recria as revisões de inscrições após anonimização dos dados' => function () use ($app) {
-        return false;
         $em = $app->em;
         $conn = $em->getConnection();
 
@@ -198,7 +191,6 @@ return [
         }
     },
     'Recria as revisões de agentes após anonimização dos dados' => function () use ($app) {
-        return false;
         $em = $app->em;
         $conn = $em->getConnection();
 
